@@ -11,6 +11,7 @@
     scrollProperty: 'scroll'
   });
 
+  	changeSection("Cervezas");
 
 	var fullHeight = function() {
 
@@ -224,3 +225,68 @@
 
 })(jQuery);
 
+function changeSection(title)
+{
+	var drinkTitle = $('#drinkTitle');
+	var articles = $('#Articles');
+	drinkTitle.html(title);
+	articles.html(`<div class="loader"></div>`);
+	
+		$.ajax({
+		type : 'GET',
+		url  : 'https://argsemueve.com/app.php/wines/' + title,
+		dataType : 'json',
+		encode : true,
+		success: function(data) {
+			if (data != 0) {
+				
+			articles.html("");
+			data.forEach(element => {
+				if (element.sale == true) {
+					articles.append(`
+					<div class="col-md-3 d-flex">
+						<div class="product">
+								<div class="img d-flex align-items-center justify-content-center" style="background-image: url(` + element.image + `);">
+								</div>
+							<div class="text text-center">
+								<span class="sale">¡Oferta!</span>
+								<h2>` + element.name + `</h2>
+								<span class="price">` + (element.price == 0 ? "Agotado" : "$" + element.price) + `</span>
+							</div>
+						</div>
+					</div>
+				`);
+				   }
+				   else{
+			articles.append(
+				 `
+			 <div class="col-md-3 d-flex">
+				 <div class="product">
+						 <div class="img d-flex align-items-center justify-content-center" style="background-image: url(` + element.image + `);">
+						 </div>
+					 <div class="text text-center">
+						 <h2>` + element.name + `</h2>
+							<span class="price">` + (element.price == 0 ? "Agotado" : "$" + element.price) + `</span>
+					 </div>
+				 </div>
+			 </div>
+		 `
+		 );
+		}
+			});
+			console.log(data);
+		}
+		else
+		{
+			articles.html('<div class="alert alert-success">' + "No hay artículos cargados." + '</div>');
+		}
+
+		},
+		error: function(data) {
+			 articles.html('<div class="alert alert-success">' + "Error." + '</div>');
+			 //$('#form-message').addClass('has-error');
+			 //$('#form-message').find('.col-lg-10').append('<span class="help-block"> Falló </span>');
+			 console.log(data);
+		}
+	});
+}
