@@ -251,6 +251,7 @@ function changeSection(title)
 							<div class="text text-center">
 								<span class="sale">¡Oferta!</span>
 								<h2>` + element.name + `</h2>
+								<h2 style="color: #963821; font-size: 17px;">` + element.description + `</h2>
 								<span class="price">` + (element.price == 0 ? "Agotado" : "$" + element.price) + `</span>
 							</div>
 						</div>
@@ -266,6 +267,7 @@ function changeSection(title)
 						 </div>
 					 <div class="text text-center">
 						 <h2>` + element.name + `</h2>
+						 <h2 style="color: #963821; font-size: 17px;">` + element.description + `</h2>
 							<span class="price">` + (element.price == 0 ? "Agotado" : "$" + element.price) + `</span>
 					 </div>
 				 </div>

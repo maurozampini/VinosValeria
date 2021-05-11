@@ -8668,16 +8668,17 @@ h1, h2, h3, h4, h5,
       color: #b7472a; }
     .product .text .price {
       font-style: italic;
-      color: #000000; }
+      color: #000000;
+      font-size: 22px; }
       .product .text .price.price-sale {
-        color: #cccccc;
+        color: #000000;
         text-decoration: line-through; }
   .product:hover {
     -webkit-box-shadow: 0px 10px 27px -21px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 0px 10px 27px -21px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 10px 27px -21px rgba(0, 0, 0, 0.2); }
     .product:hover .img:after {
-      opacity: .7; }
+      opacity: 0.1; }
     .product:hover .img .desc {
       opacity: 1; }
 
@@ -9974,4 +9975,8 @@ textarea.form-control {
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
+    }
+
+    .flaticon-box {
+      background-image: url(./images/box.svg);
     }
